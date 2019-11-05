@@ -10,8 +10,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/api/travels")
 class TravelController(
-        @Autowired
-        val travelRepository: TravelRepository
+        private val travelRepository: TravelRepository
 ) {
 
     @GetMapping

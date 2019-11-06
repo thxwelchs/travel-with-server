@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore
 import io.swagger.annotations.ApiModel
 import javax.persistence.Column
 import javax.persistence.Entity
+import javax.persistence.OneToOne
 
 @ApiModel
 @Entity
@@ -18,14 +19,17 @@ data class Member(
         var nickname: String,
 
         @Column(nullable = true)
-        var snsType: Integer,
+        var snsType: Integer?,
 
         @Column(nullable = true)
-        var black: Boolean,
+        var black: Boolean?,
 
         @Column(nullable = true)
-        var memberType: Integer,
+        var memberType: Integer?,
 
         @Column(nullable = true)
-        var dormant: Boolean
+        var dormant: Boolean?,
+
+        @OneToOne(mappedBy = "member")
+        var memberActivity: MemberActivity?
 ): MutableEntity()

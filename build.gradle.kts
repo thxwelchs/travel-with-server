@@ -6,6 +6,9 @@ plugins {
     kotlin("jvm") version "1.3.50"
     kotlin("plugin.spring") version "1.3.50"
     kotlin("plugin.jpa") version "1.3.50"
+    kotlin("kapt") version "1.3.31"
+    idea	// idea를 사용 할 수 있게 해줌
+
 }
 
 group = "com.travelwith"
@@ -23,7 +26,21 @@ repositories {
     mavenCentral()
 }
 
+val querydslVersion = "4.2.1"
+val swaggerVersion = "2.9.2"
+
 dependencies {
+
+    // swagger
+    implementation ("io.springfox:springfox-swagger2:$swaggerVersion")
+    implementation ("io.springfox:springfox-swagger-ui:$swaggerVersion")
+
+    //query-dsl 의존성
+    compile("com.querydsl:querydsl-jpa:$querydslVersion")
+    compile("com.querydsl:querydsl-sql:$querydslVersion")
+    kapt("com.querydsl:querydsl-apt:$querydslVersion:jpa")
+
+
     implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-security")
@@ -42,6 +59,15 @@ dependencies {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+}
+
+// queryDSL Qclass 저장위치
+idea {
+    module {
+        val kaptMain = file("$buildDir/generated/source/kapt/main")
+        sourceDirs.add(kaptMain)
+        generatedSourceDirs.add(kaptMain)
+    }
 }
 
 tasks.withType<KotlinCompile> {

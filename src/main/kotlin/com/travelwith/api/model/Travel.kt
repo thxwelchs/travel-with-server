@@ -1,19 +1,24 @@
 package com.travelwith.api.model
 
+import io.swagger.annotations.ApiModel
 import java.time.LocalDateTime
 import javax.persistence.Column
 import javax.persistence.Entity
+import javax.persistence.OneToMany
 
-@Entity(name = "travel")
-class Travel(
+@ApiModel
+@Entity
+data class Travel(
         var name: String,
 
-        @Column(name = "travel_explain", nullable = true)
+        @Column(nullable = true)
         var travelExplain: String?,
 
-        @Column(name = "start_date")
         var startDate: LocalDateTime,
 
-        @Column(name = "end_date", nullable = true)
-        var endDate: LocalDateTime?
+        @Column(nullable = true)
+        var endDate: LocalDateTime?,
+
+        @OneToMany(mappedBy = "travel")
+        var schedules: MutableList<Schedule>? = ArrayList()
 ): MutableEntity()

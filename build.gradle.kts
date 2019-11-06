@@ -28,6 +28,7 @@ repositories {
 
 val querydslVersion = "4.2.1"
 val swaggerVersion = "2.9.2"
+val flywayVersion = "5.2.4"
 
 dependencies {
 
@@ -35,11 +36,13 @@ dependencies {
     implementation ("io.springfox:springfox-swagger2:$swaggerVersion")
     implementation ("io.springfox:springfox-swagger-ui:$swaggerVersion")
 
-    //query-dsl 의존성
-    compile("com.querydsl:querydsl-jpa:$querydslVersion")
-    compile("com.querydsl:querydsl-sql:$querydslVersion")
+    //query-dsl
+    implementation("com.querydsl:querydsl-jpa:$querydslVersion")
+    implementation("com.querydsl:querydsl-sql:$querydslVersion")
     kapt("com.querydsl:querydsl-apt:$querydslVersion:jpa")
 
+    //flyway
+    implementation("org.flywaydb:flyway-core:$flywayVersion")
 
     implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")

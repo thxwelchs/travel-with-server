@@ -1,17 +1,16 @@
 package com.travelwith.api.model
 
 import com.fasterxml.jackson.annotation.JsonBackReference
+import com.fasterxml.jackson.annotation.JsonManagedReference
 import io.swagger.annotations.ApiModel
+import java.io.Serializable
 import java.time.LocalDateTime
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.JoinColumn
-import javax.persistence.ManyToOne
+import javax.persistence.*
 
 @ApiModel
 @Entity
 data class Schedule(
-        @ManyToOne
+        @ManyToOne(fetch = FetchType.LAZY)
         @JoinColumn(name = "travel_id")
         @JsonBackReference
         var travel: Travel,
@@ -36,5 +35,9 @@ data class Schedule(
         var startDate: LocalDateTime?,
 
         @Column(nullable = true)
-        var endDate: LocalDateTime?
-): MutableEntity()
+        var endDate: LocalDateTime?,
+
+        @OneToMany(mappedBy = "schedule", fetch = FetchType.LAZY)
+        @JsonManagedReference
+        var companions: MutableList<Companion>? = null
+): MutableEntity(), Serializable

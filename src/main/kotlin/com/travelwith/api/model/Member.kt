@@ -30,11 +30,14 @@ data class Member(
         @Column(nullable = true)
         var dormant: Boolean?,
 
-        @OneToOne(mappedBy = "member")
+        @OneToOne(mappedBy = "member", fetch = FetchType.LAZY)
         var memberActivity: MemberActivity?,
-
 
         @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
         @JsonManagedReference
-        var companions: MutableSet<Companion>? = HashSet()
+        var companions: MutableSet<Companion>? = HashSet(),
+
+        @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
+        @JsonManagedReference
+        var coupons: MutableList<Coupon>? = ArrayList()
 ): MutableEntity()

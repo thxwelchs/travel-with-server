@@ -13,10 +13,10 @@ import javax.servlet.http.HttpServletRequest
 class ApiControllerAdvice {
 
     @ExceptionHandler(Exception::class)
-    fun internalServerException(httpServletRequest: HttpServletRequest, e: Exception): ResponseEntity<ApiResponse> {
+    fun internalServerException(httpServletRequest: HttpServletRequest, e: Exception): ResponseEntity<ApiResponse<String>> {
         val httpStatusCode = HttpStatus.INTERNAL_SERVER_ERROR
 
-        val apiResponse = ApiResponse().apply {
+        val apiResponse = ApiResponse("").apply {
             httpStatus = httpStatusCode
             message = e.message.toString()
             error = ApiResponseError(ErrorCode.INTERNAL_SERVER_ERROR, e.message.toString())

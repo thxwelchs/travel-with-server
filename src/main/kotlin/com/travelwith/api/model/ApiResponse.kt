@@ -13,6 +13,6 @@ data class ApiResponse(
 )
 
 data class ApiResponseError(
-        var errorCode: String,
+        var errorCode: ErrorCode,
         var errorMessage: String
 )

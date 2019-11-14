@@ -8,7 +8,7 @@ import org.springframework.http.HttpStatus
  */
 
 class ApiResponse<T>(private val t: T){
-        var data: T? = null
+        var data: T? = t
         var httpStatus: HttpStatus = HttpStatus.OK
         var message: String = ""
         var error: ApiResponseError? = null

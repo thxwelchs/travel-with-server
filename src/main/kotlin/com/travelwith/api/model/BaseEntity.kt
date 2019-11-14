@@ -26,5 +26,5 @@ open class ImmutableEntity(
 open class MutableEntity(
         @LastModifiedDate
         @Column(name = "updated_at", columnDefinition = "DATETIME", nullable = true, updatable = true)
-        open var updatedAt: LocalDateTime? = LocalDateTime.now()
+        open var updatedAt: LocalDateTime? = null
 ): ImmutableEntity()

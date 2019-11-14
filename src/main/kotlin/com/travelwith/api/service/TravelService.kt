@@ -1,8 +1,23 @@
 package com.travelwith.api.service
 
+import com.travelwith.api.model.Travel
+import com.travelwith.api.repository.TravelRepository
 import org.springframework.stereotype.Service
+import javax.persistence.EntityNotFoundException
 
-interface TravelService {
-    fun findAll()
-    fun findByBlahBlah()
+@Service
+class TravelService(
+        private val travelRepository: TravelRepository
+) {
+    fun getTravels(): MutableList<Travel> {
+        return travelRepository.findAll()
+    }
+
+    fun getTravelsByIds(ids: Array<Int>): MutableList<Travel> {
+        return travelRepository.findByIdIn(ids)
+    }
+
+    fun getTravel(id: Int): Travel {
+        return travelRepository.findById(id).orElseThrow { EntityNotFoundException() }
+    }
 }

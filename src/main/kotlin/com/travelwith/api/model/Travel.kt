@@ -10,15 +10,15 @@ import javax.persistence.OneToMany
 @ApiModel
 @Entity
 data class Travel(
-        var name: String,
+        var name: String = "",
 
         @Column(nullable = true)
-        var travelExplain: String?,
+        var travelExplain: String? = null,
 
-        var startDate: LocalDateTime,
+        var startDate: LocalDateTime = LocalDateTime.now(),
 
         @Column(nullable = true)
-        var endDate: LocalDateTime?,
+        var endDate: LocalDateTime? = null,
 
         @OneToMany(mappedBy = "travel")
         @JsonManagedReference

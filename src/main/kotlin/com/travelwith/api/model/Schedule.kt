@@ -39,5 +39,5 @@ data class Schedule(
 
         @OneToMany(mappedBy = "schedule", fetch = FetchType.LAZY)
         @JsonManagedReference
-        var companions: MutableList<Companion>? = null
+        var scheduleMembers: MutableList<ScheduleMember>? = null
 ): MutableEntity(), Serializable

@@ -1,7 +1,6 @@
 package com.travelwith.api.model
 
 import com.fasterxml.jackson.annotation.JsonBackReference
-import com.fasterxml.jackson.annotation.JsonIgnore
 import io.swagger.annotations.ApiModel
 import javax.persistence.Entity
 import javax.persistence.FetchType
@@ -10,12 +9,11 @@ import javax.persistence.ManyToOne
 
 @ApiModel
 @Entity
-data class Companion(
-
+data class TravelMember (
         @ManyToOne(fetch = FetchType.LAZY)
-        @JoinColumn(name = "schedule_id")
+        @JoinColumn(name = "travel_id")
         @JsonBackReference
-        var schedule: Schedule,
+        var travel: Travel,
 
         @ManyToOne(fetch = FetchType.LAZY)
         @JoinColumn(name = "member_id")

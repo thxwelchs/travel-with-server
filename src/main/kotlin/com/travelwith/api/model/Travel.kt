@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiModel
 import java.time.LocalDateTime
 import javax.persistence.Column
 import javax.persistence.Entity
+import javax.persistence.FetchType
 import javax.persistence.OneToMany
 
 @ApiModel
@@ -20,7 +21,11 @@ data class Travel(
         @Column(nullable = true)
         var endDate: LocalDateTime? = null,
 
-        @OneToMany(mappedBy = "travel")
+        @OneToMany(mappedBy = "travel", fetch = FetchType.LAZY)
         @JsonManagedReference
-        var schedules: MutableList<Schedule>? = ArrayList()
+        var schedules: MutableList<Schedule>? = ArrayList(),
+
+        @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
+        @JsonManagedReference
+        var travelMembers: MutableSet<TravelMember>? = HashSet()
 ): MutableEntity()

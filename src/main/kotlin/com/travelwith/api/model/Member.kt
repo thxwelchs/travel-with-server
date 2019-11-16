@@ -1,6 +1,5 @@
 package com.travelwith.api.model
 
-import com.fasterxml.jackson.annotation.JsonBackReference
 import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonManagedReference
 import io.swagger.annotations.ApiModel
@@ -35,7 +34,11 @@ data class Member(
 
         @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
         @JsonManagedReference
-        var companions: MutableSet<Companion>? = HashSet(),
+        var scheduleMembers: MutableSet<ScheduleMember>? = HashSet(),
+
+        @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
+        @JsonManagedReference
+        var travelMembers: MutableSet<TravelMember>? = HashSet(),
 
         @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
         @JsonManagedReference

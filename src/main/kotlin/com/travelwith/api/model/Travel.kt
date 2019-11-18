@@ -27,5 +27,5 @@ data class Travel(
 
         @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
         @JsonManagedReference
-        var travelMembers: MutableSet<TravelMember>? = HashSet()
+        var travelMembers: MutableList<TravelMember>? = ArrayList()
 ): MutableEntity()

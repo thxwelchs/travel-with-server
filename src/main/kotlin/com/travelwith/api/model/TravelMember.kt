@@ -18,5 +18,6 @@ data class TravelMember (
         @ManyToOne(fetch = FetchType.LAZY)
         @JoinColumn(name = "member_id")
 //        @JsonBackReference
+//        @JsonBackReference
         var member: Member
 ): MutableEntity()

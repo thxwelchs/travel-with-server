@@ -23,5 +23,4 @@ class TravelService(
     fun getTravel(id: Int): Travel {
         return travelRepository.findById(id).orElseThrow { EntityNotFoundException() }
     }
-
 }

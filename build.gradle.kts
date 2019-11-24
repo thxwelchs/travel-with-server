@@ -28,13 +28,21 @@ repositories {
 
 val querydslVersion = "4.2.1"
 val swaggerVersion = "2.9.2"
+val swaggerAnnotationVersion = "1.5.21"
 val flywayVersion = "5.2.4"
 
 dependencies {
 
     // swagger
-    implementation ("io.springfox:springfox-swagger2:$swaggerVersion")
-    implementation ("io.springfox:springfox-swagger-ui:$swaggerVersion")
+    implementation("io.springfox:springfox-swagger2:$swaggerVersion") {
+        exclude("io.swagger:swagger-annotations")
+        exclude("io.swagger:swagger-models")
+    }
+    implementation("io.springfox:springfox-swagger-ui:$swaggerVersion")
+    // swagger ui 접속시 NumberFormatException 해결
+    implementation("io.swagger:swagger-annotations:$swaggerAnnotationVersion")
+    implementation("io.swagger:swagger-models:$swaggerAnnotationVersion")
+
 
     //query-dsl
     implementation("com.querydsl:querydsl-jpa:$querydslVersion")

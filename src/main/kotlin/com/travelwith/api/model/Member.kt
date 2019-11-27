@@ -34,11 +34,11 @@ data class Member(
 
         @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
         @JsonManagedReference
-        var scheduleMembers: MutableSet<ScheduleMember>? = HashSet(),
+        var scheduleMembers: MutableList<ScheduleMember>? = ArrayList(),
 
         @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
         @JsonManagedReference
-        var travelMembers: MutableSet<TravelMember>? = HashSet(),
+        var travelMembers: MutableList<TravelMember>? = ArrayList(),
 
         @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
         @JsonManagedReference

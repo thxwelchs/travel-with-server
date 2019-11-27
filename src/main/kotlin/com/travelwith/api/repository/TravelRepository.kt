@@ -14,7 +14,7 @@ interface TravelRepositoryCustom {
     fun findTravelsByMemberId(memberId: String): MutableList<TravelDTO>
 }
 
-class TravelRepositoryImpl :TravelRepositoryCustom , QuerydslRepositorySupport(Travel::class.java) {
+class TravelRepositoryImpl: TravelRepositoryCustom, QuerydslRepositorySupport(Travel::class.java) {
     override fun findTravelsByMemberId(memberId: String): MutableList<TravelDTO> {
         val qTravel = QTravel.travel
         val qMember = QMember.member

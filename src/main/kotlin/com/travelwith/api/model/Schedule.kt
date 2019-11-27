@@ -3,6 +3,8 @@ package com.travelwith.api.model
 import com.fasterxml.jackson.annotation.JsonBackReference
 import com.fasterxml.jackson.annotation.JsonManagedReference
 import io.swagger.annotations.ApiModel
+import org.hibernate.annotations.LazyToOne
+import org.hibernate.annotations.LazyToOneOption
 import java.io.Serializable
 import java.time.LocalDateTime
 import javax.persistence.*
@@ -39,5 +41,5 @@ data class Schedule(
 
         @OneToMany(mappedBy = "schedule", fetch = FetchType.LAZY)
         @JsonManagedReference
-        var scheduleMembers: MutableList<ScheduleMember>? = null
+        var scheduleMembers: MutableList<ScheduleMember>? = ArrayList()
 ): MutableEntity(), Serializable

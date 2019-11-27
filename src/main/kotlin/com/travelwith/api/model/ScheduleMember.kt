@@ -15,10 +15,12 @@ data class ScheduleMember(
         @ManyToOne(fetch = FetchType.LAZY)
         @JoinColumn(name = "schedule_id")
         @JsonBackReference
+        @JsonIgnore
         var schedule: Schedule,
 
         @ManyToOne(fetch = FetchType.LAZY)
         @JoinColumn(name = "member_id")
-//        @JsonBackReference
+        @JsonBackReference
+        @JsonIgnore
         var member: Member
 ): MutableEntity()

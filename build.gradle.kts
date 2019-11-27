@@ -64,6 +64,12 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("org.springframework.session:spring-session-core")
+
+    // map-struct
+    implementation("org.mapstruct:mapstruct:1.3.0.Final")
+    kapt("org.mapstruct:mapstruct-processor:1.3.0.Final")
+    kaptTest("org.mapstruct:mapstruct-processor:1.3.0.Final")
+
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     runtimeOnly("mysql:mysql-connector-java")
     testImplementation("org.springframework.boot:spring-boot-starter-test") {

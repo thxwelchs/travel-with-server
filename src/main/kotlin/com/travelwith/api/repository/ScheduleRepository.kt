@@ -9,16 +9,16 @@ import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport
 interface ScheduleRepository: JpaRepository<Schedule, Int>, ScheduleRepositoryCustom
 
 interface ScheduleRepositoryCustom {
-    fun findMemberHasSchedules(memberId: Int): MutableList<ScheduleDTO.BaseDTO>
+    fun findMemberHasSchedules(memberId: Int): MutableList<ScheduleDTO>
 }
 
 class ScheduleRepositoryImpl: ScheduleRepositoryCustom, QuerydslRepositorySupport(Schedule::class.java) {
-    override fun findMemberHasSchedules(memberId: Int): MutableList<ScheduleDTO.BaseDTO> {
+    override fun findMemberHasSchedules(memberId: Int): MutableList<ScheduleDTO> {
         val qSchedule = QSchedule.schedule
         val qScheduleMember = QScheduleMember.scheduleMember
 
         return from(qSchedule)
-                .select(Projections.constructor(ScheduleDTO.BaseDTO::class.java,
+                .select(Projections.constructor(ScheduleDTO::class.java,
                         qSchedule.id,
                         qSchedule.name,
                         qSchedule.scheduleExplain,

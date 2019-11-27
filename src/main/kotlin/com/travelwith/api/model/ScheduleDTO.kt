@@ -5,20 +5,30 @@ import org.mapstruct.Mapper
 import java.time.LocalDateTime
 
 @ApiModel
-class ScheduleDTO {
-        data class BaseDTO(
-                var id: Int = 0,
-                var name: String = "",
-                var travel: Travel? = null,
-                var scheduleExplain: String? = null,
-                var placeName: String = "",
-                var placeExplain: String? = null,
-                var lon: Float? = null,
-                var lat: Float? = null,
-                var startDate: LocalDateTime? = null,
-                var endDate: LocalDateTime? = null,
-                var createdAt: LocalDateTime,
-                var updatedAt: LocalDateTime? = null
-        )
-
+class ScheduleDTO (
+        var id: Int,
+        var name: String,
+        var travel: Travel?,
+        var scheduleExplain: String?,
+        var placeName: String,
+        var placeExplain: String?,
+        var lon: Float?,
+        var lat: Float?,
+        var startDate: LocalDateTime?,
+        var endDate: LocalDateTime?,
+        var createdAt: LocalDateTime,
+        var updatedAt: LocalDateTime?
+) {
+    constructor() : this(0,
+            "",
+            null,
+            null,
+            "",
+            null,
+            null,
+            null,
+            null,
+            null,
+            LocalDateTime.now(),
+            null)
 }

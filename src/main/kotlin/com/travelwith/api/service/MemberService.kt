@@ -12,6 +12,6 @@ class MemberService(
         private val memberRepository: MemberRepository,
         private val scheduleService: ScheduleService
 ) {
-    fun getMemberHasSchedules(memberId: Int): MutableList<ScheduleDTO.BaseDTO> =
+    fun getMemberHasSchedules(memberId: Int): MutableList<ScheduleDTO> =
             scheduleService.getMemberHasSchedule(memberId)
 }

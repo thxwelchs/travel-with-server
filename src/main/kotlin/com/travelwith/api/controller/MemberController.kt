@@ -16,7 +16,7 @@ class MemberController(
         private val memberService: MemberService
 ) {
     @GetMapping("/members/{memberId}/schedules")
-    fun getMemberHasSchedules(@PathVariable memberId: Int): ResponseEntity<ApiResponse<MutableList<ScheduleDTO.BaseDTO>>> =
+    fun getMemberHasSchedules(@PathVariable memberId: Int): ResponseEntity<ApiResponse<MutableList<ScheduleDTO>>> =
             ResponseEntity.ok(
                     ApiResponse(memberService.getMemberHasSchedules(memberId))
             )

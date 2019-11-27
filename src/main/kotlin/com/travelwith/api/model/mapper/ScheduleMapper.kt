@@ -15,5 +15,5 @@ interface ScheduleMapper {
     }
 
     @Mapping(target = "travel", ignore = true)
-    fun toDtoWithoutTravel(entity: Schedule): ScheduleDTO.BaseDTO
+    fun toDtoWithoutTravel(entity: Schedule): ScheduleDTO
 }

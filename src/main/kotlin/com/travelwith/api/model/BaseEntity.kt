@@ -26,5 +26,14 @@ open class ImmutableEntity(
 open class MutableEntity(
         @LastModifiedDate
         @Column(name = "updated_at", columnDefinition = "DATETIME", nullable = true, updatable = true)
-        open var updatedAt: LocalDateTime? = LocalDateTime.now()
+        open var updatedAt: LocalDateTime? = null
 ): ImmutableEntity()
+
+open class ImmutableDTO(
+        open var id: Int? = null,
+        open var createdAt: LocalDateTime = LocalDateTime.now()
+): Serializable
+
+open class MutableDTO(
+        open var updatedAt: LocalDateTime? = null
+): ImmutableDTO()

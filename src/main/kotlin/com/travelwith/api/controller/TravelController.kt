@@ -1,22 +1,26 @@
 package com.travelwith.api.controller
 
+import com.travelwith.api.annotaion.V1ApiController
+import com.travelwith.api.model.ApiResponse
 import com.travelwith.api.model.Travel
 import com.travelwith.api.repository.TravelRepository
-import org.springframework.beans.factory.annotation.Autowired
+import com.travelwith.api.service.TravelService
+import io.swagger.annotations.Api
+import io.swagger.annotations.ApiOperation
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
 
-@RestController
-@RequestMapping("/api/travels")
+@Api(description = "Travel(여행) API")
+@V1ApiController
 class TravelController(
-        @Autowired
-        val travelRepository: TravelRepository
+        private val travelService: TravelService
 ) {
 
-    @GetMapping
-    fun getTravels(): MutableList<Travel> {
+    @ApiOperation("모든 여행 조회")
+    @GetMapping("/travels")
+    fun getTravels(): ResponseEntity<ApiResponse<MutableList<Travel>>> =
+        ResponseEntity.ok(
+                ApiResponse(travelService.getTravels())
+        )
 
-        return travelRepository.findAll()
-    }
 }

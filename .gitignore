@@ -14,9 +14,11 @@ build/
 .springBeans
 .sts4-cache
 
+### flyway ###
+/src/main/resources/db/migration/**
+
 ### properties ###
-application-dev.properties
-application-prod.properties
+*.properties
 
 ### IntelliJ IDEA ###
 .idea

@@ -33,7 +33,7 @@ class ScheduleController(
     @GetMapping("/schedules/{id}")
     fun getSchedule(
             @ApiParam(value = "일정 PK", required = true) @PathVariable id: Int
-    ): ResponseEntity<ApiResponse<ScheduleDTO>> =
+    ): ResponseEntity<ApiResponse<Schedule>> =
             ResponseEntity.ok(
                     ApiResponse(scheduleService.getSchedule(id))
             )

@@ -14,6 +14,6 @@ interface ScheduleMapper {
         val INSTANCE = Mappers.getMapper(ScheduleMapper::class.java)
     }
 
-    @Mapping(target = "travel", ignore = true)
-    fun toDtoWithoutTravel(entity: Schedule): ScheduleDTO
+//    @Mapping(target = "travel", ignore = true)
+//    fun toDtoWithoutTravel(entity: Schedule): ScheduleDTO
 }

@@ -27,20 +27,21 @@ data class Member(
         var memberType: Short?,
 
         @Column(nullable = true)
-        var dormant: Boolean?,
+        var dormant: Boolean?
 
-        @OneToOne(mappedBy = "member", fetch = FetchType.LAZY)
-        var memberActivity: MemberActivity?,
-
-        @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
-        @JsonManagedReference
-        var scheduleMembers: MutableList<ScheduleMember>? = ArrayList(),
-
-        @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
-        @JsonManagedReference
-        var travelMembers: MutableList<TravelMember>? = ArrayList(),
-
-        @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
-        @JsonManagedReference
-        var coupons: MutableList<Coupon>? = ArrayList()
+//        @OneToOne(fetch = FetchType.EAGER)
+//        @JoinColumn(name = "memberId", insertable = false, updatable = false)
+//        var memberActivity: MemberActivity?,
+//
+//        @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
+//        @JsonManagedReference
+//        var scheduleMembers: MutableList<ScheduleMember>? = ArrayList(),
+//
+//        @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
+//        @JsonManagedReference
+//        var travelMembers: MutableList<TravelMember>? = ArrayList(),
+//
+//        @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
+//        @JsonManagedReference
+//        var coupons: MutableList<Coupon>? = ArrayList()
 ): MutableEntity()

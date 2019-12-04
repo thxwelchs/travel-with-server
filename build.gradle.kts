@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     id("org.springframework.boot") version "2.2.0.RELEASE"
     id("io.spring.dependency-management") version "1.0.8.RELEASE"
+    id("org.jetbrains.kotlin.plugin.noarg") version "1.3.31"
     kotlin("jvm") version "1.3.50"
     kotlin("plugin.spring") version "1.3.50"
     kotlin("plugin.jpa") version "1.3.50"
@@ -25,6 +26,18 @@ configurations {
 repositories {
     mavenCentral()
 }
+
+noArg {
+    annotation("javax.persistence.Entity")
+    annotation("javax.persistence.MappedSuperclass")
+    annotation("javax.persistence.Embeddable")
+}
+allOpen {
+    annotation("javax.persistence.Entity")
+    annotation("javax.persistence.MappedSuperclass")
+    annotation("javax.persistence.Embeddable")
+}
+
 
 val querydslVersion = "4.2.1"
 val swaggerVersion = "2.9.2"

@@ -1,5 +1,7 @@
 package com.travelwith.api.model
 
+import com.fasterxml.jackson.annotation.JsonBackReference
+import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonManagedReference
 import io.swagger.annotations.ApiModel
 import java.time.LocalDateTime
@@ -22,10 +24,11 @@ data class Travel(
         var endDate: LocalDateTime? = null,
 
         @OneToMany(mappedBy = "travel", fetch = FetchType.LAZY)
-        @JsonManagedReference
-        var schedules: MutableList<Schedule>? = ArrayList(),
-
-        @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
-        @JsonManagedReference
-        var travelMembers: MutableList<TravelMember>? = ArrayList()
+        @JsonIgnore
+        var schedules: MutableList<Schedule>? = ArrayList()
+//
+//        @OneToMany(mappedBy = "travel", fetch = FetchType.LAZY)
+//        @JsonBackReference
+//        @JsonIgnore
+//        var travelMembers: MutableList<TravelMember>? = ArrayList()
 ): MutableEntity()

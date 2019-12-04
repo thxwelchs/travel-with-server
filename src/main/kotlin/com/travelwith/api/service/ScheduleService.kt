@@ -16,12 +16,13 @@ class ScheduleService(
 
     fun getSchedules(): MutableList<Schedule> = scheduleRepository.findAll()
 
-    fun getSchedule(id: Int): ScheduleDTO {
+    fun getSchedule(id: Int): Schedule {
         val schedule = scheduleRepository.findById(id).orElseThrow{ EntityNotFoundException() }
-        return scheduleMapper.toDtoWithoutTravel(schedule)
+//        return scheduleMapper.toDtoWithoutTravel(schedule)
+        return schedule
     }
 
-    fun getMemberHasSchedule(memberId: Int): MutableList<ScheduleDTO> =
+    fun getMemberHasSchedule(memberId: String): MutableList<ScheduleDTO> =
             scheduleRepository.findMemberHasSchedules(memberId)
 
 }

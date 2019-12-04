@@ -7,11 +7,6 @@ import javax.persistence.*
 @ApiModel
 @Entity
 data class MemberActivity(
-        @OneToOne(fetch = FetchType.LAZY)
-        @JoinColumn(name = "member_id")
-        @JsonBackReference
-        var member: Member,
-
         @Column(nullable = true)
         var like: Int?,
 

@@ -1,6 +1,7 @@
 package com.travelwith.api.model
 
 import com.fasterxml.jackson.annotation.JsonBackReference
+import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonManagedReference
 import io.swagger.annotations.ApiModel
 import org.hibernate.annotations.LazyToOne
@@ -37,9 +38,10 @@ data class Schedule(
         var startDate: LocalDateTime?,
 
         @Column(nullable = true)
-        var endDate: LocalDateTime?,
+        var endDate: LocalDateTime?
 
-        @OneToMany(mappedBy = "schedule", fetch = FetchType.LAZY)
-        @JsonManagedReference
-        var scheduleMembers: MutableList<ScheduleMember>? = ArrayList()
+//        @OneToMany(mappedBy = "schedule", fetch = FetchType.LAZY)
+//        @JsonManagedReference
+//        @JsonIgnore
+//        var scheduleMembers: MutableList<ScheduleMember>? = ArrayList()
 ): MutableEntity(), Serializable

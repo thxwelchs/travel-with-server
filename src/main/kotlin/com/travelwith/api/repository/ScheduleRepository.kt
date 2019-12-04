@@ -9,11 +9,12 @@ import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport
 interface ScheduleRepository: JpaRepository<Schedule, Int>, ScheduleRepositoryCustom
 
 interface ScheduleRepositoryCustom {
-    fun findMemberHasSchedules(memberId: Int): MutableList<ScheduleDTO>
+    fun findMemberHasSchedules(memberId: String): MutableList<ScheduleDTO>
 }
 
 class ScheduleRepositoryImpl: ScheduleRepositoryCustom, QuerydslRepositorySupport(Schedule::class.java) {
-    override fun findMemberHasSchedules(memberId: Int): MutableList<ScheduleDTO> {
+
+    override fun findMemberHasSchedules(memberId: String): MutableList<ScheduleDTO> {
         val qSchedule = QSchedule.schedule
         val qScheduleMember = QScheduleMember.scheduleMember
 
@@ -30,10 +31,10 @@ class ScheduleRepositoryImpl: ScheduleRepositoryCustom, QuerydslRepositorySuppor
                         qSchedule.endDate,
                         qSchedule.createdAt,
                         qSchedule.updatedAt
-                        ))
+                ))
                 .join(qScheduleMember)
                 .on(qScheduleMember.schedule.id.eq(qSchedule.id))
-                .where(qScheduleMember.member.id.eq(memberId))
+                .where(qScheduleMember.member.memberId.eq(memberId))
                 .fetch()
     }
 }

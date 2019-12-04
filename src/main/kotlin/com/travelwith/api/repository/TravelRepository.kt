@@ -27,10 +27,11 @@ class TravelRepositoryImpl: TravelRepositoryCustom, QuerydslRepositorySupport(Tr
                         qTravel.travelExplain,
                         qTravel.startDate,
                         qTravel.endDate,
-                        qTravelMember.member
+                        qTravel.createdAt,
+                        qTravel.updatedAt
                         ))
-                    .join(qTravelMember.travel, qTravel)
-                    .join(qMember, qTravelMember.member)
+                .join(qTravelMember).on(qTravelMember.travel.id.eq(qTravel.id))
+                .join(qMember).on(qMember.id.eq(qTravelMember.member.id).and(qMember.memberId.eq(memberId)))
                 .fetch()
     }
 }

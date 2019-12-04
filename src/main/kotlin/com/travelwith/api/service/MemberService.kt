@@ -1,9 +1,6 @@
 package com.travelwith.api.service
 
-import com.travelwith.api.model.Member
-import com.travelwith.api.model.MemberDTO
-import com.travelwith.api.model.Schedule
-import com.travelwith.api.model.ScheduleDTO
+import com.travelwith.api.model.*
 import com.travelwith.api.model.mapper.MemberMapper
 import com.travelwith.api.repository.MemberRepository
 import com.travelwith.api.repository.TravelMemberRepository
@@ -12,7 +9,8 @@ import org.springframework.stereotype.Service
 @Service
 class MemberService(
         private val memberRepository: MemberRepository,
-        private val scheduleService: ScheduleService
+        private val scheduleService: ScheduleService,
+        private val travelService: TravelService
 ) {
 
     private val memberMapper = MemberMapper.INSTANCE
@@ -23,4 +21,7 @@ class MemberService(
     }
     fun getMemberHasSchedules(memberId: String): MutableList<ScheduleDTO> =
             scheduleService.getMemberHasSchedule(memberId)
+
+    fun getMemberHasTravels(memberId: String): MutableList<TravelDTO> =
+            travelService.getTravelByMemberId(memberId)
 }

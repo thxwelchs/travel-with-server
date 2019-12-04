@@ -9,9 +9,25 @@ import javax.persistence.OneToMany
 @ApiModel
 data class TravelDTO (
         var name: String = "",
-        var explain: String? = null,
+        var travelExplain: String? = null,
         var startDate: LocalDateTime = LocalDateTime.now(),
         var endDate: LocalDateTime? = null,
         var schedules: MutableList<ScheduleDTO>? = ArrayList(),
         var members: MutableList<MemberDTO> = ArrayList()
-): MutableDTO()
+): MutableDTO() {
+    constructor(id: Int,
+                name: String,
+                travelExplain: String?,
+                startDate: LocalDateTime,
+                endDate: LocalDateTime?,
+                createdAt: LocalDateTime,
+                updatedAt: LocalDateTime?): this() {
+        this.id = id
+        this.name = name
+        this.travelExplain = travelExplain
+        this.startDate = startDate
+        this.endDate = endDate
+        this.createdAt = createdAt
+        this.updatedAt = updatedAt
+    }
+}

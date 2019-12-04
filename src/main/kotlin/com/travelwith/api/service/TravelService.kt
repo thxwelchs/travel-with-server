@@ -30,4 +30,7 @@ class TravelService(
         val travel = travelRepository.findById(id).orElseThrow { EntityNotFoundException() }
         return travelMapper.toDtoWithoutLazy(travel)
     }
+
+    fun getTravelByMemberId(memberId: String): MutableList<TravelDTO> =
+            travelRepository.findTravelsByMemberId(memberId)
 }

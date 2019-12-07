@@ -31,5 +31,4 @@ class TravelController(
             ResponseEntity.ok(
                     ApiResponse(travelService.getTravel(travelId))
             )
-
 }

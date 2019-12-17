@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController
 @Target(AnnotationTarget.CLASS, AnnotationTarget.FILE)
 @Retention(AnnotationRetention.RUNTIME)
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/v1")
 annotation class V1ApiController(
         @get:AliasFor(annotation = Component::class, attribute = "value")
         val value: String = ""
